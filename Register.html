@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap-5.3.1-dist/css/bootstrap.css">
+</head>
+
+<body>
+
+    <div class="container col-lg-5 ">
+        <div class="mb-3 mt-4">
+            <label for="name" class="form-label">Name :</label>
+            <input   type="text" class="form-control" id="name">
+        </div>
+
+        <div class="mb-3 mt-4">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" class="form-control" id="email">
+        </div>
+
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="text" class="form-control" id="password">
+        </div>
+        <button class="btn btn-danger" onclick="createaccount()">Create Account</button>
+
+    </div>
+
+
+   
+
+
+
+
+
+
+
+
+<script type="module">
+            // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+    import { getAuth , createUserWithEmailAndPassword , onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+    
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDOl6MOe-IRRqH0LVq2ZTp_2dl3OF3jj2o",
+      authDomain: "crud-cource.firebaseapp.com",
+      projectId: "crud-cource",
+      storageBucket: "crud-cource.appspot.com",
+      messagingSenderId: "568087559141",
+      appId: "1:568087559141:web:83cfc4ceec673b87400d0c"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+
+
+
+        window.createaccount = createaccount
+      async function createaccount(){
+            var email = document.getElementById("email").value
+           
+           try{
+            var email = document.getElementById("email").value
+            var password = document.getElementById("password").value
+            var res = await  createUserWithEmailAndPassword(auth, email, password)
+           } catch(err){
+            console.log(err)
+           }
+
+        }
+
+        onAuthStateChanged(auth,(user) => {
+            if(user){
+                location.assign("./Login.html")
+            }
+            
+        })
+
+    </script>
+
+    <script src="bootstrap-5.3.1-dist/js/bootstrap.js"></script>
+</body>
+
+</html>
